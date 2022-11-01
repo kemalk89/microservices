@@ -1,8 +1,8 @@
 const express = require('express');
 const app = express();
-const port = 3001;
+const port = process.env.PORT || 3000;
 
-app.get('/api/basket', (req, res) => {
+app.get('/', (req, res) => {
   res.send('Hello from Basket Service!');
 });
 

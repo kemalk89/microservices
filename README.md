@@ -5,6 +5,12 @@ In this project we have 3 microservices:
 - order-service
 - product-service
 
+# Getting started
+```sh
+minikube start
+sh ./scripts/initKubernetesCluster.sh
+```
+
 # Todos
 - Swagger UI
 - Separate Database for each service

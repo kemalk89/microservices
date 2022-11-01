@@ -1,3 +1,6 @@
+# Intro
+You can run this service as a docker container.
+
 # Build image
 ```sh
 docker build -t product-service .

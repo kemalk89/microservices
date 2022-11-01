@@ -1,9 +1,13 @@
 const express = require('express');
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
+
+app.get('/', (req, res) => {
+  res.send('Hello from Order Service!');
+});
 
 app.get('/api/orders', (req, res) => {
-  res.send('Hello from Order Service!');
+  res.send('Order-Service: /api/orders');
 });
 
 app.listen(port, () => {
