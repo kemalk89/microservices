@@ -6,7 +6,6 @@ spec:
   selector:
     matchLabels:
       app: basket-service
-  replicas: 1
   template:
     metadata:
       labels:
@@ -14,10 +13,11 @@ spec:
     spec:
       containers:
       - name: basket-service
-        image: basket-service:latest
+        image: basket-service
         imagePullPolicy: Never
-        env:
-        - name: PORT
-          value: "3001"
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
         ports:
-        - containerPort: 3001
+        - containerPort: 3004
