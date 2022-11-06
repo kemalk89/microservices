@@ -20,14 +20,21 @@ minikube tunnel # enter your password
 ```
 3. Extend hosts file
 
-If running on MacOS, put entry "127.0.0.1 myingress.info" in your /etc/hosts file.
-If running on other OS you can put "<INGRESS_ADDRESS> myingress.info" where INGRESS_ADDRESS can be found out by running ```minikube ip``` (Note it can take some time until field ADDRESS is available).
+Put following entries in your /etc/hosts file:
+
+````
+<IP_ADRESS> my-web-ui.info
+<IP_ADRESS> my-services.info
+````
+If running on MacOS <IP_ADRESS> should be loopback address 127.0.0.1. We also have to run ```minikube tunnel```. Visit https://minikube.sigs.k8s.io/docs/drivers/docker/#known-issues for more information. Take a look at "The ingress, and ingress-dns addons are currently only supported on Linux.".
+
+If running on other OS we can find out <IP_ADRESS> by running ```minikube ip``` (Note it can take some time until field ADDRESS is available).
 
 4. Open app in browser
-- WebUI: http://myingress.info
-- Product-Service: http://myingress.info/product-service
-- Basket-Service: http://myingress.info/basket-service
-- Order-Service: http://myingress.info/order-service
+- WebUI: http://my-web-ui.info
+- Product-Service: http://my-services.info/product-service/
+- Basket-Service: http://my-services.info/basket-service/
+- Order-Service: http://my-services.info/order-service/
 
 # Todos
 - Swagger UI

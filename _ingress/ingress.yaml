@@ -6,7 +6,7 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /$1
 spec:
   rules:
-  - host: myingress.info
+  - host: my-web-ui.info
     http:
       paths:
       - pathType: Prefix
@@ -16,22 +16,25 @@ spec:
             name: web-ui
             port: 
               number: 3001
+  - host: my-services.info
+    http:
+      paths:
       - pathType: Prefix
-        path: "/product-service"
+        path: "/product-service/(.*)"
         backend:
           service:
             name: product-service
             port: 
               number: 3002
       - pathType: Prefix
-        path: "/order-service"
+        path: "/order-service/(.*)"
         backend:
           service:
             name: order-service
             port: 
               number: 3003
       - pathType: Prefix
-        path: "/basket-service"
+        path: "/basket-service/(.*)"
         backend:
           service:
             name: basket-service

@@ -75,7 +75,6 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     echo_info "The ingress, and ingress-dns addons are currently only supported on Linux. So currently you won't be able to access your ingress using IP address of your minikube cluster (minikube ip)."
     echo_info "(For more information visit https://minikube.sigs.k8s.io/docs/drivers/docker/ and scroll down to Known Issues.)"
     echo_info "Instead using the IP address of minikube we are going to use the loopback address 127.0.0.1 as a workaround." 
-    echo_info "Please put '127.0.0.1 myingress.info' in your /etc/hosts file and run 'minikube tunnel'."
-    echo_info "Now you can open your browser and visit 'myingress.info' to access ingress."
+    echo_info "Follow the README file for more information."
     echo_info "=========================================================================="
 fi
