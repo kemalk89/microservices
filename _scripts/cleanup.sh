@@ -13,7 +13,13 @@ echo_info()
 }
 #########################################################
 BASEDIR=$(dirname "$0")
-SERVICES=(product-service order-service basket-service web-ui)
+SERVICES=(
+    product-service 
+    product-service-mongodb
+   # order-service 
+   # basket-service 
+    web-ui
+)
 
 for SERVICE in ${SERVICES[@]}
 do
@@ -21,24 +27,8 @@ echo_info "=====================================================================
 echo_info "Cleaning up the $SERVICE"
 echo_info "=========================================================================="
 
-echo_info "Deleting $SERVICE service..."
-kubectl delete service $SERVICE
-
-echo_info "Deleting $SERVICE deployment..."
-kubectl delete deployment $SERVICE
-
-RESOURCE_CONFIG_NAMESPACE=$BASEDIR/../$SERVICE/devops/$SERVICE-namespace.yml
-RESOURCE_CONFIG_MAP=$BASEDIR/../$SERVICE/devops/$SERVICE-configMap.yml
-if test -f "$RESOURCE_CONFIG_NAMESPACE"; then
-    echo_info "Deleting namespace defined in $SERVICE..."
-    kubectl delete -f $RESOURCE_CONFIG_NAMESPACE
-fi
-
-if test -f "$RESOURCE_CONFIG_MAP"; then
-    echo_info "Deleting configMap defined in $SERVICE..."
-    kubectl delete -f $RESOURCE_CONFIG_MAP
-fi
-
+echo_info "Deleting $SERVICE resources..."
+kubectl delete -f $SERVICE/devops
 done
 
 echo_info "Deleting ingress..."

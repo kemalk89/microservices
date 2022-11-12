@@ -34,9 +34,17 @@ BASEDIR=$(dirname "$0")
 
 #########################################################
 
-SERVICES=(product-service order-service basket-service web-ui)
+SERVICES=(
+    product-service-mongodb
+    product-service 
+   # order-service 
+   # basket-service 
+    #web-ui
+)
 
 eval $(minikube -p minikube docker-env)
+
+sh $BASEDIR/cleanup.sh
 
 for SERVICE in ${SERVICES[@]}
 do
@@ -48,18 +56,7 @@ echo_info "Build the docker image..."
 docker build -t $SERVICE $BASEDIR/../$SERVICE
 
 echo_info "Create the resources..."
-RESOURCE_CONFIG_NAMESPACE=$BASEDIR/../$SERVICE/devops/$SERVICE-namespace.yml
-RESOURCE_CONFIG_MAP=$BASEDIR/../$SERVICE/devops/$SERVICE-configMap.yml
-if test -f "$RESOURCE_CONFIG_NAMESPACE"; then
-    kubectl apply -f $RESOURCE_CONFIG_NAMESPACE
-fi
-
-kubectl apply -f $BASEDIR/../$SERVICE/devops/$SERVICE-deployment.yml
-kubectl apply -f $BASEDIR/../$SERVICE/devops/$SERVICE-service.yml
-
-if test -f "$RESOURCE_CONFIG_MAP"; then
-    kubectl apply -f $RESOURCE_CONFIG_MAP
-fi
+kubectl apply -f $BASEDIR/../$SERVICE/devops
 
 done
 
@@ -67,6 +64,8 @@ done
 echo_info "Enabling ingress..."
 minikube addons enable ingress
 kubectl apply -f $BASEDIR/../_ingress/ingress.yaml
+
+kubectl get all
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
     # MacOS
