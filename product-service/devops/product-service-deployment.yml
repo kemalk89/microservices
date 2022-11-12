@@ -21,3 +21,29 @@ spec:
             cpu: "500m"
         ports:
         - containerPort: 3002
+        env:
+          - name: MONGODB_HOST
+            valueFrom:
+              configMapKeyRef:
+                name: product-service-mongodb-configmap
+                key: host
+          - name: MONGODB_PORT
+            valueFrom:
+              configMapKeyRef:
+                name: product-service-mongodb-configmap
+                key: port
+          - name: MONGODB_DB
+            valueFrom:
+              configMapKeyRef:
+                name: product-service-mongodb-configmap
+                key: database
+          - name: MONGODB_DB_USER
+            valueFrom:
+              secretKeyRef:
+                name: product-service-mongodb-secret
+                key: mongo-root-username
+          - name: MONGODB_DB_USER_PW
+            valueFrom:
+              secretKeyRef:
+                name: product-service-mongodb-secret
+                key: mongo-root-password
