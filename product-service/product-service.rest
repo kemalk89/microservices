@@ -1,0 +1,12 @@
+POST http://localhost:3002/api/products
+Content-Type: application/json
+
+{
+    "name": "SomeItem", 
+    "description": "Desc of SomeItem.", 
+    "price": 1000
+}
+
+###
+
+GET http://localhost:3002/api/products

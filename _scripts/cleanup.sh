@@ -18,7 +18,6 @@ SERVICES=(
     product-service-mongodb
    # order-service 
    # basket-service 
-    web-ui
 )
 
 for SERVICE in ${SERVICES[@]}

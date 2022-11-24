@@ -31,7 +31,6 @@ If running on MacOS <IP_ADRESS> should be loopback address 127.0.0.1. We also ha
 If running on other OS we can find out <IP_ADRESS> by running ```minikube ip``` (Note it can take some time until field ADDRESS is available).
 
 4. Open app in browser
-- WebUI: http://my-web-ui.info
 - Product-Service: http://my-services.info/product-service/
 - Basket-Service: http://my-services.info/basket-service/
 - Order-Service: http://my-services.info/order-service/

@@ -39,7 +39,6 @@ SERVICES=(
     product-service 
    # order-service 
    # basket-service 
-    #web-ui
 )
 
 eval $(minikube -p minikube docker-env)
