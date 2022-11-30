@@ -7,6 +7,7 @@ COPY --chown=node:node package*.json ./
 RUN npm ci --only=production
 
 COPY --chown=node:node server.js ./server.js
+COPY --chown=node:node src ./src
 
 USER node
 

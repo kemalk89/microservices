@@ -1,11 +1,17 @@
 const express = require('express');
-const app = express();
+const basketController = require('./src/basketController');
+const basketRepository = require('./src/basketRepository');
+
 const port = process.env.PORT || 3004;
 
-app.get('/', (req, res) => {
-  res.send('Hello from Basket Service!');
-});
+const app = express();
+app.use(express.json());
 
-app.listen(port, () => {
+const _basketRepository = basketRepository();
+basketController(app, _basketRepository);
+
+app.listen(port, async () => {
+  await _basketRepository.connectDB();
+
   console.log(`Basket service API listening on port ${port}`);
 });
