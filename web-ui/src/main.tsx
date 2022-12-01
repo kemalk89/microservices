@@ -8,8 +8,12 @@ import {
 import App from './App';
 import { Basket } from './basket/basket';
 import { Imprint } from './imprint/imprint';
-import './index.css';
 import { ProductList } from './product/product-list';
+import { UserLogin } from './user/user-login';
+import { UserLogout } from './user/user-logout';
+
+import './index.css';
+import { UserProfile } from './user/user-profile';
 
 const router = createBrowserRouter([
   {
@@ -20,6 +24,9 @@ const router = createBrowserRouter([
       { path: "products", element: <ProductList /> },
       { path: "basket", element: <Basket /> },
       { path: "imprint", element: <Imprint /> },
+      { path: "login", element: <UserLogin /> },
+      { path: "logout", element: <UserLogout /> },
+      { path: "profile", element: <UserProfile /> },
     ]
   },
 ]);
